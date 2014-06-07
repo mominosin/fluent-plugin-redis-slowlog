@@ -20,8 +20,10 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
       :port => @port
     )
     pong = @redis.ping
-    unless pong == 'PONG'
-        raise "fluent-plugin-redis-slowlog: cannot connect redis"
+    begin
+        unless pong == 'PONG'
+            raise "fluent-plugin-redis-slowlog: cannot connect redis"
+        end
     end
     @log_id = 0
     @get_interval = @interval

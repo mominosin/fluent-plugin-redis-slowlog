@@ -21,11 +21,4 @@ class Redis_SlowlogInputTest < Test::Unit::TestCase
   def test_configure
   end
 
-  def test_format
-    d = create_driver
-  end
-
-  def test_write
-    d = create_driver
-  end
 end
