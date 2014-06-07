@@ -1,4 +1,4 @@
-# Fluent::Plugin::Redis::Slowlog
+# Fluent::Plugin::RedisSlowlog
 
 TODO: Write a gem description
 

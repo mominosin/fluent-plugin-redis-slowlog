@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.version       = "0.0.1"
   spec.authors       = ["shingo suzuki"]
   spec.email         = ["s_suzuking@icloud.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "Redis slowlog input plugin for Fluent event collector"
+  spec.summary       = gem.description
+  spec.homepage      = "https://github.com/mominosin/fluent-plugin-redis-slowlog"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
