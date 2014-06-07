@@ -9,7 +9,7 @@
 <source>
   type redis_slowlog
   host [Redis Hostname]
-  port [Redis Port (default: 63790)]
+  port [Redis Port (default: 6379)]
   logsize  [Redis Command(SLOWLOG get logsise) (default:128)]
   interval [Redis Command(SLOWLOG get logsize) interval (default:10)]
   tag redis.slowlog
