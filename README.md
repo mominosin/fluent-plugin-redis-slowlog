@@ -1,29 +1,23 @@
-# Fluent::Plugin::RedisSlowlog
-
-TODO: Write a gem description
+# fluent-plugin-redis-slowlog [![Build Status](https://travis-ci.org/mominosin/fluent-plugin-redis-slowlog.svg?branch=master)](https://travis-ci.org/mominosin/fluent-plugin-redis-slowlog)
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'fluent-plugin-redis-slowlog'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install fluent-plugin-redis-slowlog
 
-## Usage
+## Configuration
+```config
+<source>
+  type redis_slowlog
+  host [Redis Hostname]
+  port [Redis Port (default: 63790)]
+  logsize  [Redis Command(SLOWLOG get logsise) (default:128)]
+  interval [Redis Command(SLOWLOG get logsize) interval (default:10)]
+  tag redis.slowlog
+</source>
+```
 
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+### output
+```
+2014-06-08 05:33:51 +0900 redis.slowlog: {"id":176,"timestamp":1402173275,"exec_time":9,"command":["set","hoge","aga"]}
+2014-06-08 05:33:51 +0900 redis.slowlog: {"id":175,"timestamp":1402173273,"exec_time":137,"command":["slowlog","get","128"]}
+```
