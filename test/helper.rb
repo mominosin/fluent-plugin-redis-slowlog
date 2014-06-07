@@ -22,7 +22,7 @@ unless ENV.has_key?('VERBOSE')
   $log = nulllogger
 end
 
-require 'fluent/plugin/out_redis_slowlog'
+require 'fluent/plugin/in_redis_slowlog'
 
 class Test::Unit::TestCase
 end

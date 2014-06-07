@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["shingo suzuki"]
   spec.email         = ["s_suzuking@icloud.com"]
   spec.description   = "Redis slowlog input plugin for Fluent event collector"
-  spec.summary       = gem.description
+  spec.summary       = spec.description
   spec.homepage      = "https://github.com/mominosin/fluent-plugin-redis-slowlog"
   spec.license       = "MIT"
 
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake" 
   spec.add_runtime_dependency "fluentd"
   spec.add_runtime_dependency "redis"
 end
