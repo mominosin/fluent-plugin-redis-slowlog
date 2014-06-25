@@ -53,7 +53,6 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
     slow_logs = @redis.slowlog('get', logsize)
 
     log_id = slow_logs[0][0]
-    puts last_id
     slow_logs.reverse.each do |log|
       unless log[0] > last_id
         next
