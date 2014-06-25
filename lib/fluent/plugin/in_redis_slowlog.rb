@@ -15,9 +15,16 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
 
   def configure(conf)
     super
+    @log_id = 0
+    @get_interval = @interval
+  end
+
+  def start
+    super
     @redis = Redis.new(
       :host => @host, 
-      :port => @port
+      :port => @port,
+      :thread_safe => true
     )
     pong = @redis.ping
     begin
@@ -25,17 +32,12 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
             raise "fluent-plugin-redis-slowlog: cannot connect redis"
         end
     end
-    @log_id = 0
-    @get_interval = @interval
-  end
-
-  def start
-    super
     @watcher = Thread.new(&method(:watch))
   end
 
   def shutdown
     super
+    @redis.quit
   end
 
   private
@@ -51,11 +53,11 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
     slow_logs = @redis.slowlog('get', logsize)
 
     log_id = slow_logs[0][0]
-    slow_logs.each do |log|
+    slow_logs.reverse.each do |log|
       unless log[0] > last_id
         break
       end
-      log_hash = { id: log[0], timestamp: log[1], exec_time: log[2], command: log[3] }
+      log_hash = { id: log[0], timestamp: Time.at(log[1]), exec_time: log[2], command: log[3] }
       Fluent::Engine.emit(tag, Time.now.to_i, log_hash)
     end
     return log_id
