@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "fluent-plugin-redis-slowlog"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["shingo suzuki"]
   spec.email         = ["s_suzuking@icloud.com"]
   spec.description   = "Redis slowlog input plugin for Fluent event collector"

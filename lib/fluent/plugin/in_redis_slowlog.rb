@@ -53,9 +53,10 @@ class Fluent::Redis_SlowlogInput < Fluent::Input
     slow_logs = @redis.slowlog('get', logsize)
 
     log_id = slow_logs[0][0]
+    puts last_id
     slow_logs.reverse.each do |log|
       unless log[0] > last_id
-        break
+        next
       end
       log_hash = { id: log[0], timestamp: Time.at(log[1]), exec_time: log[2], command: log[3] }
       Fluent::Engine.emit(tag, Time.now.to_i, log_hash)
